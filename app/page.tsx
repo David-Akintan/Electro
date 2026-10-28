@@ -173,7 +173,7 @@ export default function Home() {
   return (
     <>
       <Header groups={groups.map(({ title, items }) => ({ title, items }))} />
-      <Effects />
+      {/* <Effects /> */}
 
       <main id="main">
         <Hero slides={slides} />
@@ -446,8 +446,9 @@ export default function Home() {
           </div>
           <div className="mt-14 flex flex-col items-start justify-between gap-4 border-t border-white/15 pt-6 sm:flex-row sm:items-center">
             <p className="text-xs text-white/60">
-              &copy; {new Date().getFullYear()} Plus Electro Engineering
-              Services Limited
+              Site developed by <a href="https://dayve.vercel.app">David</a>
+              {/* &copy; {new Date().getFullYear()} Plus Electro Engineering
+              Services Limited */}
             </p>
             {/* <MotionToggle /> */}
           </div>
