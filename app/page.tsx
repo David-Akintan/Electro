@@ -22,7 +22,7 @@ const groups = [
   },
   {
     title: "Service and repair",
-    img: "/images/img-006.jpg",
+    img: "/images/img-004.jpg",
     alt: "White generator canopy with a digital control panel and emergency stop",
     items: [
       "Generator servicing and preventive maintenance",
@@ -129,7 +129,7 @@ const roomSystems: RoomSystem[] = [
     label: "Noise control",
     title: "A quieter environment around essential power.",
     text: "We manage generator noise so the equipment can support your operation without overwhelming the surrounding space.",
-    image: "/images/img-002.jpg",
+    image: "/images/img-000.jpg",
     alt: "Row of soundproofed generator canopies in a workshop",
     services: ["Noise management and control", "Generator soundproofing"],
   },
@@ -137,7 +137,7 @@ const roomSystems: RoomSystem[] = [
     label: "Heat management",
     title: "Protect equipment from excess operating heat.",
     text: "Insulation, lagging and cladding help manage heat in generator rooms and support longer equipment life.",
-    image: "/images/img-004.jpg",
+    image: "/images/img-003.jpg",
     alt: "Blue generator with its canopy doors open during installation work",
     services: ["Thermal insulation and lagging", "Metal cladding works"],
   },
@@ -145,7 +145,7 @@ const roomSystems: RoomSystem[] = [
     label: "Exhaust systems",
     title: "Built around the realities of your site.",
     text: "We fabricate and install exhaust systems that move heat and emissions safely away from generator spaces.",
-    image: "/images/img-003.jpg",
+    image: "/images/img-001.jpg",
     alt: "Generator installation with an insulated exhaust pipe overhead",
     services: [
       "Exhaust manifold construction",
@@ -173,7 +173,7 @@ export default function Home() {
   return (
     <>
       <Header groups={groups.map(({ title, items }) => ({ title, items }))} />
-      {/* <Effects /> */}
+      <Effects />
 
       <main id="main">
         <Hero slides={slides} />

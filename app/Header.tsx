@@ -72,10 +72,10 @@ export default function Header({ groups }: { groups: Group[] }) {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${light ? "bg-white text-ink" : solid ? "bg-ink/85 text-white backdrop-blur" : "bg-transparent text-white"}`}
     >
-      <div className="mx-auto grid h-16 max-w-7xl grid-cols-[1fr_auto_1fr] items-center px-6 dis">
+      <div className="mx-auto grid h-16 max-w-7xl grid-cols-[1fr_auto_1fr] items-center justify-between flex px-6 dis">
         <a
           href="#top"
-          className="flex items-center justify-between gap-1 text-base font-semibold tracking-tight"
+          className="flex items-center  gap-1 text-base font-semibold tracking-tight"
         >
           <svg aria-hidden viewBox="0 0 24 24" className="h-5 w-5 fill-volt">
             <path d="M13 2 4 14h6l-1 8 9-12h-6z" />
@@ -83,7 +83,7 @@ export default function Header({ groups }: { groups: Group[] }) {
           electro
         </a>
 
-        <nav aria-label="Main" className="hidden items-center md:flex">
+        <nav aria-label="Main" className="hidden items-center md:flex ">
           {(["services", "company"] as Key[]).map((k) => (
             <div
               key={k}

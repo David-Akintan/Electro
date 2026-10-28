@@ -67,13 +67,13 @@ export default function Effects() {
         aria-hidden
         className="fixed inset-x-0 top-0 z-[60] h-[2px] origin-left scale-x-0 bg-volt"
       />
-      <a
+      {/* <a
         href="#contact"
         tabIndex={fab ? 0 : -1}
         className={`fab-pulse fixed bottom-5 right-5 z-40 rounded-full bg-volt px-5 py-3 text-sm font-medium text-ink shadow-lg transition-all duration-300 hover:bg-white ${fab ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-4 opacity-0"}`}
       >
         Request Quote
-      </a>
+      </a> */}
     </>
   );
 }
