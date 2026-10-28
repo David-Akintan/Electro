@@ -1,26 +1,234 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@font-face {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 100 1000;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/dmsans/v17/rP2Yp2ywxg089UriI5-g4vlH9VoD8Cmcqbu6-K6h9Q.woff2);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@theme {
+  --color-ink: #0e1116;
+  --color-volt: #f26b1d;
+  --color-concrete: #e7e9ec;
+  --color-paper: #f6f7f8;
+  --font-sans:
+    "DM Sans", "Geist Variable", ui-sans-serif, system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  h1,
+  h2,
+  h3 {
+    font-weight: 500;
+    letter-spacing: -0.025em;
+  }
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 72px;
+    scroll-snap-type: y proximity;
+  }
+  :focus-visible {
+    outline: 3px solid #f26b1d;
+    outline-offset: 3px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+:root {
+  --ease: cubic-bezier(0.2, 0.7, 0.1, 1);
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes kb {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.09);
+  }
+}
+@keyframes fill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+@keyframes drop {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(242, 107, 29, 0.55);
+  }
+  70%,
+  100% {
+    box-shadow: 0 0 0 16px rgba(242, 107, 29, 0);
+  }
+}
+
+.fade-up {
+  animation: fade-up 0.9s var(--ease) both;
+  animation-delay: var(--d, 0s);
+}
+.kenburns {
+  animation: kb 9s ease-out both;
+}
+.drop {
+  animation: drop 0.22s var(--ease) both;
+}
+.fab-pulse {
+  animation: pulse-ring 2.4s ease-out infinite;
+}
+/* Slide timer: the bar filling IS the autoplay clock; when it ends the slide advances */
+.bar-fill {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  transform-origin: left;
+  animation: fill 7s linear forwards;
+}
+
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.8s var(--ease),
+    transform 0.8s var(--ease);
+  transition-delay: var(--d, 0s);
+}
+.js [data-reveal][data-in] {
+  opacity: 1;
+  transform: none;
+}
+
+/* Service tiles: the item list slides up on hover or keyboard focus; always open on touch screens */
+.tile-list {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition:
+    max-height 0.5s var(--ease),
+    opacity 0.4s;
+}
+.tile:hover .tile-list,
+.tile:focus-within .tile-list {
+  max-height: 22rem;
+  opacity: 1;
+}
+@media (hover: none) {
+  .tile-list {
+    max-height: none;
+    opacity: 1;
+  }
+}
+
+/* Buttons: fixed minimum width like Tesla's paired buttons; colour wipes up from the bottom on hover */
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 15rem;
+  overflow: hidden;
+  isolation: isolate;
+  padding: 0.8rem 2rem;
+  font-weight: 500;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  transition:
+    color 0.25s,
+    transform 0.15s;
+}
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  transform: translateY(101%);
+  transition: transform 0.28s var(--ease);
+}
+.btn:hover::before {
+  transform: none;
+}
+.btn:active {
+  transform: scale(0.98);
+}
+.btn-light {
+  background: #fff;
+  color: #0e1116;
+}
+.btn-light::before {
+  background: #f26b1d;
+}
+.btn-glass {
+  background: rgba(14, 17, 22, 0.55);
+  color: #fff;
+  backdrop-filter: blur(6px);
+}
+.btn-glass::before {
+  background: #fff;
+}
+.btn-glass:hover {
+  color: #0e1116;
+}
+.btn-dark {
+  background: #0e1116;
+  color: #fff;
+}
+.btn-dark::before {
+  background: #f26b1d;
+}
+.btn-dark:hover {
+  color: #0e1116;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+    scroll-snap-type: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+  .js [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+}
+:root[data-motion="reduce"] {
+  scroll-behavior: auto;
+  scroll-snap-type: none;
+}
+:root[data-motion="reduce"] *,
+:root[data-motion="reduce"] *::before,
+:root[data-motion="reduce"] *::after {
+  animation: none !important;
+  transition-duration: 0.01ms !important;
+}
+:root[data-motion="reduce"].js [data-reveal] {
+  opacity: 1;
+  transform: none;
 }
